@@ -1,31 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Product } from '../Product';
 import { products } from '../Products';
+import { Modal } from '../Modal';
 
-type ProductsProps = {
-  id: number;
-  title: string,
-  description: string,
-}
+import { useContextProduct } from '../../ProductContext';
+
 
 export function Main() {
 
-  let cartItems: any = [];
+  const {addItem, modalVisible, setModalVisible} = useContextProduct();
   
-  const [prod, setProd] = useState<null | any>([])
-
-
-  const addItem = ({ title, description }: ProductsProps) => {
-    let cart = [...prod];
-    cart.push({
-      id: prod.length + 1,
-      title,
-      description
-    });
-    setProd(cart);   
-    cartItems = cart;
-    console.log(cart)
-  };
+  // const [modalVisible, setModalVisible] = useState(false);
 
   return (
     <main className='w-full min-h-[90vh] flex flex-col items-center'>
@@ -35,7 +20,9 @@ export function Main() {
         description='Batata 300g'
         price={15}
         cents={50}
-        handleProduct={() => addItem({id: products[0].id , title: 'Porção de batata', description: 'Batata 300g' })}
+        // handleProduct={() => addItem({id: products[0].id , title: 'Porção de batata', description: 'Batata 300g' })}
+        data-modal-toggle="small-modal"
+        openModal={() => setModalVisible(true)}
       />
 
       <Product
@@ -43,14 +30,11 @@ export function Main() {
         description='Calabresa fatiada'
         price={25}
         cents={50}
-        handleProduct={() => addItem({id: products[1].id , title: products[1].title, description: 'Calabresa fatiada' })}
+        // handleProduct={() => addItem({id: products[1].id , title: products[1].title, description: 'Calabresa fatiada' })}
+        openModal={() => setModalVisible(true)}
       />
 
-      {
-        prod.map(({title, description, id}:ProductsProps) => (
-          <p key={id}>{title}, {description}</p>
-        ))
-      }
+      <Modal visibility={!modalVisible ? 'hidden' : 'w-[90%] max-w-sm h-[300px] rounded-xl fixed animate-appearModal mt-[20vh] bg-pink-400 shadow-[0_0_0_100vmax_rgba(0,0,0,0.726)] index-[999]'}/>
 
     </main>
   )
