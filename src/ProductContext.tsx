@@ -1,6 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 
-
 interface ProductProvideProps {
   children: ReactNode;
 }
@@ -30,24 +29,27 @@ export const ProductStorage = ({children}:ProductProvideProps) => {
   // adicionar local storage
 
   const addItem = ({ title, description }: ProductsProps) => {
-    const cart = {
+    let cart = [...prod];
+    cart.push({
       id: prod.length + 1,
       title,
       description
-    };
-    setProd((oldProduct: any) => ([...oldProduct, cart]));
+    });
+    // setProd((oldProduct: any) => ([...oldProduct, cart]));
+    setProd(cart)
     cartItems = cart;
-    console.log(cart)    
+    console.log('cart', cart)
+    
   };
 
   const [modalVisible, setModalVisible] = useState(false);
 
+  
   return (
     <ProductContext.Provider value={{addItem, prod, cartItems, modalVisible, setModalVisible}}>
       { children }
     </ProductContext.Provider>
   )
-
 }
 
 export function useContextProduct () {

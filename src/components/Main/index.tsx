@@ -5,7 +5,6 @@ import { Modal } from '../Modal';
 
 import { useContextProduct } from '../../ProductContext';
 
-
 export function Main() {
 
   const {addItem, modalVisible, setModalVisible} = useContextProduct();
@@ -32,10 +31,23 @@ export function Main() {
         cents={50}
         // handleProduct={() => addItem({id: products[1].id , title: products[1].title, description: 'Calabresa fatiada' })}
         openModal={() => setModalVisible(true)}
-      />
+      />      
 
-      <Modal visibility={!modalVisible ? 'hidden' : 'w-[90%] max-w-sm h-[300px] rounded-xl fixed animate-appearModal mt-[20vh] bg-pink-400 shadow-[0_0_0_100vmax_rgba(0,0,0,0.726)] index-[999]'}/>
+      <Modal visibility={!modalVisible ? 'hidden' : 'visible'}/>
 
     </main>
   )
 }
+
+
+
+// type ProductsProps = {
+//   id: number;
+//   title: string,
+//   description: string,
+// }
+// {
+//         prod.map(({title, description, id}:ProductsProps) => (
+//           <p key={id}>{title}, {description}</p>
+//         ))
+//       }
