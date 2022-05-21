@@ -1,10 +1,12 @@
 export const products = [
   {
-    id: 1,
-    title: 'Porção de batata'
+    id: 0,
+    title: 'Porção de batata',
+    description: 'Batata 300g'
   },
   {
-    id: 2,
-    title: 'Porção de calabresa acebolada'
+    id: 1,
+    title: 'Porção de calabresa acebolada',
+    description: 'Calabresa fatiada'
   }
 ]

@@ -16,6 +16,7 @@ interface ProductContextData {
   cartItems: number;
   modalVisible: boolean;
   setModalVisible: any;
+  handleProduct: any;
 }
 
 export const ProductContext = createContext({} as ProductContextData)
@@ -44,9 +45,19 @@ export const ProductStorage = ({children}:ProductProvideProps) => {
 
   const [modalVisible, setModalVisible] = useState(false);
 
+  function handleProduct (proprety: any) {
+    proprety = proprety.currentTarget.getAttribute('data-value');
+    console.log(proprety)
+    
+    if (proprety !== null){
+      setModalVisible(true);
+    }
+    
+  }
+
   
   return (
-    <ProductContext.Provider value={{addItem, prod, cartItems, modalVisible, setModalVisible}}>
+    <ProductContext.Provider value={{addItem, prod, cartItems, modalVisible, setModalVisible, handleProduct}}>
       { children }
     </ProductContext.Provider>
   )

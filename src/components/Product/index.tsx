@@ -3,14 +3,15 @@ export interface TextProps {
   description: string;
   price: number;
   cents: number | string;
+  value: number;
   openModal: () => void;
   // handleProduct: any;
 }
 
-export function Product ({title, description, price, cents, openModal}: TextProps) {
+export function Product ({title, description, price, cents, openModal, value}: TextProps) {
   return(
-    <section onClick={openModal} className='w-[90%] mt-5 flex flex-row items-center flex-nowrap gap-3 border-b-2 border-indigo-500 pb-2'>
-      <article className='bg-green-500 w-[80%]'>
+    <section onClick={openModal} data-value={value} className='w-[90%] mt-5 flex flex-row items-center flex-nowrap gap-3 border-b-2 border-indigo-500 pb-2 cursor-pointer'>
+      <article className='z-[0] bg-green-500 w-[80%]'>
         <h2 className='text-2xl font-semibold'>
           { title }
         </h2>

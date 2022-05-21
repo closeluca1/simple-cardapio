@@ -7,31 +7,41 @@ import { useContextProduct } from '../../ProductContext';
 
 export function Main() {
 
-  const {addItem, modalVisible, setModalVisible} = useContextProduct();
+  const {addItem, modalVisible, setModalVisible, handleProduct} = useContextProduct();
   
   // const [modalVisible, setModalVisible] = useState(false);
+
+  // function handleProduct (e: any) {    
+  //   console.log('ok')
+  //   console.log(e.target.value)
+  // }
+
 
   return (
     <main className='w-full min-h-[90vh] flex flex-col items-center'>
 
       <Product
+        value={products[0].id}
         title={products[0].title}
-        description='Batata 300g'
+        description={products[0].description}
         price={15}
         cents={50}
-        // handleProduct={() => addItem({id: products[0].id , title: 'Porção de batata', description: 'Batata 300g' })}
+        // handleProduct={() => addItem({id: products[0].id , title: 'Porção de batata', description: products[0].description })}
         data-modal-toggle="small-modal"
-        openModal={() => setModalVisible(true)}
+        openModal={handleProduct}
       />
 
       <Product
+        value={products[1].id}
         title={products[1].title}
-        description='Calabresa fatiada'
+        description={products[1].description}
         price={25}
         cents={50}
-        // handleProduct={() => addItem({id: products[1].id , title: products[1].title, description: 'Calabresa fatiada' })}
-        openModal={() => setModalVisible(true)}
+        // handleProduct={() => handleProduct}
+        openModal={handleProduct}
       />      
+
+      {/* <button onClick={handleProduct} value='ola'>ola mundo</button> */}
 
       <Modal visibility={!modalVisible ? 'hidden' : 'visible'}/>
 
